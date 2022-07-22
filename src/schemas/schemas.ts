@@ -11,10 +11,17 @@ const loginUserSchema = Joi.object().keys({
     password: Joi.string().min(4).required()
 });
 
+const testSchema = Joi.object().keys({
+    name: Joi.string().required(),                
+    pdfUrl: Joi.string().regex(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/).required(),
+    categoryId: Joi.number().required(),
+    teacherDisciplineId: Joi.number().required()
+});
+
 const schemas = {
     createUserSchema,
     loginUserSchema,
-    
+    testSchema
 };
 
 export default schemas;

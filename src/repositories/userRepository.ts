@@ -2,12 +2,7 @@ import prisma from '../database.js';
 import { users } from "@prisma/client";
 
 export type User = Omit <users, 'id'>;
-/*
-export interface User {
-    email: string;
-    password: string;
-}
-*/
+
 export async function getUserbyId(id: number) {
     return prisma.users.findFirst({
         where: {
