@@ -18,10 +18,15 @@ const testSchema = Joi.object().keys({
     teacherDisciplineId: Joi.number().required()
 });
 
+const categorySchema = Joi.object().keys({
+    name: Joi.string().required()
+});
+
 const schemas = {
     createUserSchema,
     loginUserSchema,
-    testSchema
+    testSchema,
+    categorySchema
 };
 
 export default schemas;
