@@ -8,3 +8,14 @@ export async function createTest(test: testRepository.Test) {
 
     await testRepository.addTest(test);
 }
+
+export async function getTests(groupBy: string) {
+    groupBy = JSON.parse(groupBy);
+
+    if (groupBy === 'disciplines') {
+        return await testRepository.getTestsGroupbyDisciplines();
+    } else if (groupBy === 'teachers') {
+        return await testRepository.getTestsGroupbyTeachers();
+    }
+    throw new Error('Invalid groupBy');
+}

@@ -1,5 +1,5 @@
 import prisma from '../database.js';
-import { tests } from "@prisma/client";
+import { disciplines, tests } from "@prisma/client";
 
 export type Test = Omit <tests, 'id' | 'category' | 'teacherDiscipline'>;
 
@@ -49,5 +49,50 @@ export async function checkTest(test: Test) {
             categoryId: test.categoryId,
             teacherDisciplineId: test.teacherDisciplineId
         }
+    });
+}
+
+export async function getTerms() {
+    return prisma.terms.findMany({
+        orderBy: {
+            number: "asc"
+        }
+    });
+}
+
+export async function getTestsGroupbyDisciplines() {
+    return prisma.terms.findMany({
+        orderBy: {
+            number: "asc"
+        },
+        include: {
+            discipline: {
+              include: {
+                TeacherDiscipline: {
+                    include: { 
+                        discipline: {}, 
+                        teacher: {}, 
+                        Test: {}
+                    },
+                },
+              },
+            },
+          },
+    });
+}
+
+export async function getTestsGroupbyTeachers(){
+    return prisma.teachersDisciplines.findMany({
+        include: { 
+            teacher: {}, 
+            discipline: { 
+                include: { 
+                    term: {} 
+                }
+            }, 
+                Test: { 
+                    include: { 
+                        category: {} 
+                }}},
     });
 }
