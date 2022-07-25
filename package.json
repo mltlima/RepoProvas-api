@@ -11,7 +11,7 @@
     "build": "tsc",
     "test": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i",
     "start": "node dist/server.js",
-    "dev": "nodemon src/index.ts",
+    "dev": "nodemon src/server.ts",
     "migrate": "prisma migrate dev"
   },
   "keywords": [],
