@@ -14,32 +14,6 @@ export async function addTest(test: Test) {
     });
 }
 
-export async function getTestbyDiscipline(disciplineId: number) {
-    return prisma.tests.findMany({
-        where: {
-            teacherDisciplineId : disciplineId
-        }
-    });
-}
-
-//get test by category
-export async function getTestbyCategory(categoryId: number) {
-    return prisma.tests.findMany({
-        where: {
-            categoryId : categoryId
-        }
-    });
-}
-
-//get test by teacherDisciplineId
-export async function getTestbyTeacherDiscipline(teacherDisciplineId: number) {
-    return prisma.tests.findMany({
-        where: {
-            teacherDisciplineId : teacherDisciplineId
-        }
-    });
-}
-
 //check if test is already in database
 export async function checkTest(test: Test) {
     return prisma.tests.findMany({
@@ -52,13 +26,6 @@ export async function checkTest(test: Test) {
     });
 }
 
-export async function getTerms() {
-    return prisma.terms.findMany({
-        orderBy: {
-            number: "asc"
-        }
-    });
-}
 
 export async function getTestsGroupbyDisciplines() {
     return prisma.terms.findMany({
