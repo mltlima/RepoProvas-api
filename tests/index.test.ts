@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import { faker } from "@faker-js/faker";
 
-import app from '../src/server.js';
+import app from '../src/index.js';
 import prisma from '../src/database.js';
 import { createUser } from './factories/userFactory.js';
 import { generateToken } from './factories/sessionFactory.js';
